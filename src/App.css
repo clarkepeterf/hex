@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: rgb(109, 109, 76);
+  color: rgb(252, 242, 255);
+}
+
+.outerGrid{
+  width: 100%;
+  height: 100%;
+}
+
+.splashScreen{
+  justify-items: center;
+  display: grid;
+  margin: auto auto;
+  padding: auto auto;
+}
+
+.startButton{
+  margin-top:1vh;
+  display: block;
+  margin-bottom: 1vh;
+}
+
+.headerArea{
+  margin-top: 1%;
+  margin-left: 20%;
+  margin-bottom: 1%;
+}
+
+.hexGrid {
+  display: inline-grid;
+  gap: 0.2vw 0.2vw;
+  grid-template-columns: repeat(32,1fr);
+  width: 90%;
+  max-width: 120vh;
+  margin: 2% 25%;
+}
+
+.hexLogo {
+  margin: 5vh 0;
+  width: 53.7vh;
+  height: 46.7vh;
+}
+
+.leftBar{
+  display: grid;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hex {
+  grid-column-end: span 2;
+  position: relative;
+  visibility:hidden;
+}
+
+.invisibleHex{
+  grid-column-end: span 1;
+  position: relative;
+  visibility:hidden;
+}
+
+.invisibleHexRight{
+  grid-column-end: span 1;
+  position: relative;
+  visibility:hidden;
+  padding-top: 95%;
+}
+
+.invisibleHexLeft{
+  grid-column-end: span 1;
+  position: relative;
+  visibility:hidden;
+  padding-top: 37%;
+}
+
+.invisibleHexTop{
+  grid-column-end: span 1;
+  position: relative;
+  visibility:hidden;
+  padding-left: 55%;
+  padding-bottom: 55%;
+}
+
+.hex::after{
+  content:'';
+  display:block;
+  padding-bottom: 86.602%;  /* =  100 / tan(60) * 1.5 */
+}
+
+.hexIn{
+  position: absolute;
+  width:100%;
+  padding-bottom: 115.470%; /* =  width / sin(60) */
+  overflow: hidden;
+  -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+      -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+          transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+}
+.hexIn * {
+  position: absolute;
+  visibility: visible;
+}
+
+.hexLink {
+  display:block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+  -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+      -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+          transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+}
