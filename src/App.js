@@ -12,7 +12,6 @@ function App() {
   const [winner, setWinner] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [turnNumber, setTurnNumber] = useState(0);
-  const [gameTypeIsComputer, setGameType] = useState(true);
   const [lastMoveLocation, setLastMoveLocation] = useState(null);
 
   function initiateBoardState() {
@@ -21,7 +20,7 @@ function App() {
       initialBoardState[i] = Array(11);
       for (let j = 0; j < 11; j++) {
         initialBoardState[i][j] = {
-          color: "rgb(252, 242, 255)",
+          color: "hsla(0, 0%, 99%, 1)",
           fromTop: i === 0 ? 1 : 100,
           fromBottom: i === 10 ? 1 : 100,
           fromLeft: j === 0 ? 1 : 100,
@@ -106,31 +105,7 @@ function App() {
     }
 
     checkWinner();
-
-    if (gameTypeIsComputer && lastMoveLocation && currentPlayer === "Blue") {
-      const neighbors = getNeighbors(lastMoveLocation);
-      const neighborsToCheckMap = createEmptyVisitedHexesMap();
-      const potentialMoveHexes = [];
-      neighbors.forEach((neighbor) => {
-        const neighborX = neighbor.x;
-        const neighborY = neighbor.y;
-        neighborsToCheckMap.get(neighborX).set(neighborY, true);
-        const secondNeighbors = getNeighbors(neighbor);
-        secondNeighbors.forEach((secondNeighbor) => {
-          const secondNeighborX = secondNeighbor.x;
-          const secondNeighborY = secondNeighbor.y;
-          neighborsToCheckMap.get(secondNeighborX).set(secondNeighborY, true);
-        });
-      });
-      neighborsToCheckMap.forEach((yMap, xKey) => {
-        yMap.forEach((bool, yKey) => {
-          if (bool) {
-            potentialMoveHexes.push({ x: xKey, y: yKey });
-          }
-        })
-      })
-    }
-  }, [boardState, currentPlayer, winner, gameTypeIsComputer, lastMoveLocation]);
+  }, [boardState, currentPlayer, winner, lastMoveLocation]);
 
   function populateHexes() {
     const hexes = [];
@@ -227,7 +202,7 @@ function App() {
   }
 
   function reset() {
-    setBoardState(Array(11).fill(Array(11).fill({ color: "rgb(252, 242, 255)" })));
+    setBoardState(Array(11).fill(Array(11).fill({ color: "hsla(0, 0%, 99%, 1)" })));
     setWinner(null);
     setCurrentPlayer("Red");
     setTurnNumber(0);
@@ -252,16 +227,6 @@ function App() {
         <div className="splashScreen">
           <h1> Hex </h1>
           <img className="hexLogo" src={hexPng} alt="Hex Logo" />
-          <div>
-            <div>
-              <input type="radio" id="playerVsComputer" name="gameType" value="playerVsComputer" defaultChecked onClick={() => setGameType(true)} />
-              <label htmlFor="playerVsComputer">Player vs. Computer </label>
-            </div>
-            <div>
-              <input type="radio" id="playerVsPlayer" name="gameType" value="playerVsPlayer" onClick={() => setGameType(false)} />
-              <label htmlFor="playerVsPlayer">Player vs. Player</label>
-            </div>
-          </div>
           <button className="startButton" onClick={startGame}>Start Game</button>
           <a href="https://www.peterclarke.org/hex/rules.html">How to Play</a>
         </div>

@@ -3,8 +3,8 @@
   padding: 0;
 }
 body {
-  background: rgb(109, 109, 76);
-  color: rgb(252, 242, 255);
+  background-color: hsl(0, 0%, 22%);
+  color: hsla(0, 0%, 99%, 1);
 }
 
 .outerGrid{
@@ -44,6 +44,7 @@ body {
   margin: 5vh 0;
   width: 53.7vh;
   height: 46.7vh;
+  border-radius: 5%;
 }
 
 .leftBar{
@@ -116,4 +117,11 @@ body {
   -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
       -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
           transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+}
+
+a:link{
+  color: hsl(199, 100%, 36%);
+}
+a:visited{
+  color: hsl(293, 100%, 36%)
 }
